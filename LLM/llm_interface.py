@@ -22,18 +22,13 @@ class FlanT5Interface(LLMInterface):
         Initialize Flan-T5 model
         Options: flan-t5-small, flan-t5-base, flan-t5-large
         """
-        logger.info(f"Loading {model_name}...")
-        
         # Check if CUDA is available
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info(f"Using device: {self.device}")
         
         # Load model and tokenizer
         self.tokenizer = T5Tokenizer.from_pretrained(model_name)
         self.model = T5ForConditionalGeneration.from_pretrained(model_name)
         self.model.to(self.device)
-        
-        logger.info("Model loaded successfully!")
     
     def _create_prompt(self, text: str, num_cards: int) -> str:
         """Create optimized prompt for Flan-T5"""
@@ -142,8 +137,6 @@ Flashcards:
                     )
                 
                 response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-                
-                logger.info(f"MODEL RAW OUTPUT: {response}")
                 
                 # Parse flashcards from response
                 flashcards = self._parse_flashcards(response)
