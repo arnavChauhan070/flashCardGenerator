@@ -12,7 +12,7 @@ No API keys required (runs locally)
    git clone (https://github.com/arnavChauhan070/flashCardGenerator.git)
    cd flashCardGenerator
 
-2) Create and activate a virtual environment (recommended): or may be    conflict arise if u do direclty
+2) Create and activate a virtual environment (recommended): or may be    conflict arise if u do directly
 
    python3 -m venv venv
    # mac
